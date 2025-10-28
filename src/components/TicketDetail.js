@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getTicketById, updateTicketStatus, addResponse, getResponsesForTicket } from '../utils/api';
 import { STATUS_COLORS, TICKET_STATUSES } from '../utils/constants';
@@ -12,13 +12,7 @@ const TicketDetail = () => {
   const [newResponse, setNewResponse] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
-  useEffect(() => {
-    if (id) {
-      fetchTicketData();
-    }
-  }, [id]);
-
-  const fetchTicketData = async () => {
+  const fetchTicketData = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -46,7 +40,13 @@ const TicketDetail = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    if (id) {
+      fetchTicketData();
+    }
+  }, [id, fetchTicketData]);
 
   const handleStatusUpdate = async (newStatus) => {
     try {

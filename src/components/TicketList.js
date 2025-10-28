@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getTickets } from '../utils/api';
+// import { getTickets } from '../utils/api'; // Using direct fetch instead
 import { STATUS_COLORS, PRIORITY_SORT_MAPPING } from '../utils/constants';
 
 const TicketList = () => {

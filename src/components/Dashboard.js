@@ -228,7 +228,7 @@ const Dashboard = () => {
                   </span>
                 </div>
                 <div className="recent-meta">
-                  <span className="recent-priority priority-${ticket.priority.toLowerCase()}">
+                  <span className={`recent-priority priority-${ticket.priority.toLowerCase()}`}>
                     {ticket.priority}
                   </span>
                   <span className="recent-author">By: {ticket.createdBy}</span>
